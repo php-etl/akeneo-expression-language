@@ -1,5 +1,5 @@
 {
-    "name": "php-etl/akeneo-expressiopn-language",
+    "name": "php-etl/akeneo-expression-language",
     "description": "This library implements functions for manupulating Akeneo API data in ExpressionLanguage",
     "type": "library",
     "license": "MIT",
