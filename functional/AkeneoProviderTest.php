@@ -689,6 +689,44 @@ class AkeneoProviderTest extends TestCase
             ],
             'filter(input, scope("print", "mobile", "web"))',
         ];
+
+        yield [
+            [
+                [
+                    'locale' => 'en_US',
+                    'scope' => 'mobile',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+            ],
+            [
+                [
+                    'locale' => 'en_US',
+                    'scope' => 'mobile',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+                [
+                    'locale' => 'fr_CA',
+                    'scope' => 'web',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+                [
+                    'locale' => 'fr_CA',
+                    'scope' => 'marketplace',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+                [
+                    'locale' => 'fr_FR',
+                    'scope' => 'print',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+                [
+                    'locale' => 'en_GB',
+                    'scope' => 'mobile',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+            ],
+            'filter(input, scope("print", "mobile", "web"), first())',
+        ];
     }
 
     /**

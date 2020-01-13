@@ -2,7 +2,6 @@
 
 namespace Kiboko\Component\ETL\ExpressionLanguage\Akeneo;
 
-use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 use Symfony\Component\ExpressionLanguage\ExpressionFunctionProviderInterface;
 
 final class AkeneoFilterProvider implements ExpressionFunctionProviderInterface
@@ -21,6 +20,8 @@ final class AkeneoFilterProvider implements ExpressionFunctionProviderInterface
             new Offset('offset'),
             new First('first'),
             new Last('last'),
+            new DateTime('datetime'),
+            new DateTimeZone('datetimezone'),
 //            new ExpressionFunction(
 //                'coalesce',
 //                function () {
