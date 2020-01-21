@@ -17,8 +17,8 @@ final class Filter extends ExpressionFunction
 
     private function compile(string $input, string ...$callbacks)
     {
-        $output = $input;
-        foreach (array_reverse($callbacks) as $callback) {
+        $output = sprintf('%s ?? []', $input);
+        foreach ($callbacks as $callback) {
             $output = sprintf('(%s)(%s)', $callback, $output);
         }
 
@@ -27,7 +27,7 @@ final class Filter extends ExpressionFunction
 
     private function evaluate(array $context, array $input, callable ...$callbacks)
     {
-        $output = $input;
+        $output = $input ?? [];
         foreach (array_reverse($callbacks) as $callback) {
             $output = $callback($output);
         }
