@@ -30,7 +30,7 @@ PATTERN;
         return sprintf($pattern, implode(', ', $locales));
     }
 
-    private function evaluate(array $context, string ...$locales)
+    private function evaluate(array $context, ?string ...$locales)
     {
         return function (array $input) use($locales): array {
             $output = array_filter($input, function(array $item) use($locales) {
