@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\ExpressionLanguage\Akeneo;
+namespace Kiboko\Component\ExpressionLanguage\Akeneo;
 
 use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 
@@ -22,7 +22,7 @@ final class Last extends ExpressionFunction
 
     private function evaluate(array $context)
     {
-        return function(array $input) {
+        return function (array $input) {
             return array_slice($input, -1, 1, true);
         };
     }

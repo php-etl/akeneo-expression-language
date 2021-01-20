@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\ExpressionLanguage\Akeneo;
+namespace Kiboko\Component\ExpressionLanguage\Akeneo;
 
 use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 
@@ -22,7 +22,7 @@ final class Slice extends ExpressionFunction
 
     private function evaluate(array $context, int $offset, int $length)
     {
-        return function(array $input) use($offset, $length) {
+        return function (array $input) use ($offset, $length) {
             return array_slice($input, $offset, $length, true);
         };
     }

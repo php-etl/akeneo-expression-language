@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\ExpressionLanguage\Akeneo;
+namespace Kiboko\Component\ExpressionLanguage\Akeneo;
 
 use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 
@@ -32,8 +32,8 @@ PATTERN;
 
     private function evaluate(array $context, string ...$scopes)
     {
-        return function (array $input) use($scopes): array {
-            $output = array_filter($input, function(array $item) use($scopes) {
+        return function (array $input) use ($scopes): array {
+            $output = array_filter($input, function (array $item) use ($scopes) {
                 return in_array($item['scope'], $scopes);
             });
 

@@ -18,6 +18,6 @@ formatter.name: pretty
 stop_on_failure: false
 suites:
   fastmap_suite:
-    namespace: Kiboko\Component\ETL\ExpressionLanguage\Akeneo
-    psr4_prefix: Kiboko\Component\ETL\ExpressionLanguage\Akeneo
+    namespace: Kiboko\Component\ExpressionLanguage\Akeneo
+    psr4_prefix: Kiboko\Component\ExpressionLanguage\Akeneo
     src_path: '%paths.config%'

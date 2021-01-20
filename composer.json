@@ -15,31 +15,28 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": "^7.2",
+        "php": "^8.0",
         "nikic/php-parser": "^4.2",
-        "symfony/expression-language": "^3.4",
-        "php-etl/phpspec-extension": "^1.0@dev"
+        "symfony/expression-language": "^3.4"
     },
     "require-dev": {
-        "phpspec/phpspec": "^5.1",
-        "phpunit/phpunit": "^7.0",
-        "johnkary/phpunit-speedtrap": "^3.1@dev",
-        "mybuilder/phpunit-accelerator": "dev-master",
-        "phpstan/phpstan": "^0.12.0@dev",
-        "infection/infection": "dev-master",
-        "friends-of-phpspec/phpspec-code-coverage": "^4.0@dev"
+        "phpunit/phpunit": "^9.0",
+        "johnkary/phpunit-speedtrap": "4.0.x-dev"
     },
     "autoload": {
         "psr-4": {
-            "Kiboko\\Component\\ETL\\ExpressionLanguage\\Akeneo\\": "src/"
+            "Kiboko\\Component\\ExpressionLanguage\\Akeneo\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "spec\\Kiboko\\Component\\ETL\\ExpressionLanguage\\Akeneo\\": "spec/",
-            "unit\\Kiboko\\Component\\ETL\\ExpressionLanguage\\Akeneo\\": "unit/",
-            "functional\\Kiboko\\Component\\ETL\\ExpressionLanguage\\Akeneo\\": "functional/"
+            "spec\\Kiboko\\Component\\ExpressionLanguage\\Akeneo\\": "spec/",
+            "unit\\Kiboko\\Component\\ExpressionLanguage\\Akeneo\\": "unit/",
+            "functional\\Kiboko\\Component\\ExpressionLanguage\\Akeneo\\": "functional/"
         }
+    },
+    "config": {
+        "bin-dir": "bin"
     },
     "extra": {
         "branch-alias": {

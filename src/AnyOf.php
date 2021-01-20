@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\ExpressionLanguage\Akeneo;
+namespace Kiboko\Component\ExpressionLanguage\Akeneo;
 
 use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 
@@ -32,7 +32,7 @@ COMPILED;
 
     private function evaluate(array $context, callable ...$filters)
     {
-        return function(array $input) use($filters) {
+        return function (array $input) use ($filters) {
             $output = [];
             foreach ($filters as $filter) {
                 $output = $filter($input) + $output;

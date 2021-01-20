@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\ETL\ExpressionLanguage\Akeneo;
+namespace Kiboko\Component\ExpressionLanguage\Akeneo;
 
 use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 
@@ -26,10 +26,10 @@ final class Limit extends ExpressionFunction
 
     private function evaluate(array $context, callable ...$filters)
     {
-        return function(array $input) use($filters) {
+        return function (array $input) use ($filters) {
             return array_slice(
                 $input,
-                ...array_map(function(callable $filter) use($input) {
+                ...array_map(function (callable $filter) use ($input) {
                     return $filter($input);
                 }, $filters)
             );

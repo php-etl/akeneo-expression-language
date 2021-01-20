@@ -1,12 +1,9 @@
 <?php
 
-namespace functional\Kiboko\Component\ETL\ExpressionLanguage\Akeneo;
+namespace functional\Kiboko\Component\ExpressionLanguage\Akeneo;
 
-use Kiboko\Component\ETL\ExpressionLanguage\Akeneo\AkeneoFilterProvider;
-use PhpSpec\ObjectBehavior;
+use Kiboko\Component\ExpressionLanguage\Akeneo\AkeneoFilterProvider;
 use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
-use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
 class AkeneoProviderTest extends TestCase
