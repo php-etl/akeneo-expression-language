@@ -22,6 +22,7 @@
     "require-dev": {
         "phpunit/phpunit": "^9.0",
         "johnkary/phpunit-speedtrap": "4.0.x-dev",
+        "mybuilder/phpunit-accelerator": "*",
         "adlawson/vfs": "dev-develop"
     },
     "autoload": {
@@ -32,8 +33,8 @@
     "autoload-dev": {
         "psr-4": {
             "spec\\Kiboko\\Component\\ExpressionLanguage\\Akeneo\\": "spec/",
-            "unit\\Kiboko\\Component\\ExpressionLanguage\\Akeneo\\": "unit/",
-            "functional\\Kiboko\\Component\\ExpressionLanguage\\Akeneo\\": "functional/"
+            "unit\\Kiboko\\Component\\ExpressionLanguage\\Akeneo\\": "tests/unit/",
+            "functional\\Kiboko\\Component\\ExpressionLanguage\\Akeneo\\": "tests/functional/"
         }
     },
     "config": {

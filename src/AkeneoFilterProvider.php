@@ -9,40 +9,21 @@ final class AkeneoFilterProvider implements ExpressionFunctionProviderInterface
     public function getFunctions()
     {
         return [
-            new Filter('filter'),
-            new Locale('locale'),
-            new Scope('scope'),
-            new AnyOf('anyOf'),
-            new AllOf('allOf'),
-            new Slice('slice'),
-            new Head('head'),
-            new Tail('tail'),
-            new Offset('offset'),
-            new First('first'),
-            new Last('last'),
-            new DateTime('datetime'),
-            new DateTimeZone('datetimezone'),
-//            new ExpressionFunction(
-//                'coalesce',
-//                function () {
-//                    $filters = \func_get_args();
-//                    $compiled = array_map(function ($item) {
-//                        return sprintf('(%s)($item)', $item);
-//                    }, $filters);
-//
-//                    return sprintf('function ($item) {return %s;}', implode(' || ', $compiled));
-//                },
-//                function (array $context, callable ...$filters) {
-//                    return function ($item) use ($filters) {
-//                        foreach ($filters as $filter) {
-//                            if ($filter($item) === true) {
-//                                return true;
-//                            }
-//                        }
-//                        return false;
-//                    };
-//                }
-//            ),
+            new Filter('akeneo\\filter'),
+            new Attribute('akeneo\\attribute'),
+            new Coalesce('akeneo\\coalesce'),
+            new Locale('akeneo\\locale'),
+            new Scope('akeneo\\scope'),
+            new AnyOf('akeneo\\anyOf'),
+            new AllOf('akeneo\\allOf'),
+            new Slice('akeneo\\slice'),
+            new Head('akeneo\\head'),
+            new Tail('akeneo\\tail'),
+            new Offset('akeneo\\offset'),
+            new First('akeneo\\first'),
+            new Last('akeneo\\last'),
+            new DateTime('akeneo\\dateTime'),
+            new DateTimeZone('akeneo\\dateTimeZone'),
         ];
     }
 }

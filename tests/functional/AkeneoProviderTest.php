@@ -60,7 +60,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'filter(input, locale("fr_FR"))',
+            'akeneo\\filter(input, akeneo\\locale("fr_FR"))',
         ];
 
         yield [
@@ -87,7 +87,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'filter(input, locale("it_IT"))',
+            'akeneo\\filter(input, akeneo\\locale("it_IT"))',
         ];
 
         yield [
@@ -125,7 +125,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'filter(input, scope("print"))',
+            'akeneo\\filter(input, akeneo\\scope("print"))',
         ];
 
         yield [
@@ -152,7 +152,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'filter(input, scope("mobile"))',
+            'akeneo\\filter(input, akeneo\\scope("mobile"))',
         ];
 
         yield [
@@ -185,7 +185,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'filter(input, scope("print"), locale("fr_FR"))',
+            'akeneo\\filter(input, akeneo\\scope("print"), akeneo\\locale("fr_FR"))',
         ];
 
         yield [
@@ -228,7 +228,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'filter(input, locale("fr_FR", "fr_CA"))',
+            'akeneo\\filter(input, akeneo\\locale("fr_FR", "fr_CA"))',
         ];
 
         yield [
@@ -271,7 +271,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'filter(input, scope("web", "print"))',
+            'akeneo\\filter(input, akeneo\\scope("web", "print"))',
         ];
 
         yield [
@@ -314,40 +314,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'filter(input, anyOf(scope("web"), locale("fr_FR")))',
-        ];
-
-        yield [
-            [
-                [
-                    'locale' => 'fr_FR',
-                    'scope' => 'web',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-            ],
-            [
-                [
-                    'locale' => 'fr_FR',
-                    'scope' => 'web',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-                [
-                    'locale' => 'en_US',
-                    'scope' => 'mobile',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-                [
-                    'locale' => 'fr_CA',
-                    'scope' => 'web',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-                [
-                    'locale' => 'fr_FR',
-                    'scope' => 'print',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-            ],
-            'filter(input, locale("fr_FR"), coalesce(scope("web"), scope("print")))',
+            'akeneo\\filter(input, akeneo\\anyOf(akeneo\\scope("web"), akeneo\\locale("fr_FR")))',
         ];
 
         yield [
@@ -357,8 +324,18 @@ private ?FileSystem $fs = null;
                     'scope' => 'print',
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
+                [
+                    'locale' => 'fr_FR',
+                    'scope' => 'web',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
             ],
             [
+                [
+                    'locale' => 'fr_FR',
+                    'scope' => 'web',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
                 [
                     'locale' => 'en_US',
                     'scope' => 'mobile',
@@ -375,174 +352,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'filter(input, locale("fr_FR"), coalesce(scope("web"), scope("print")))',
-        ];
-
-        yield [
-            [
-                [
-                    'locale' => 'fr_FR',
-                    'scope' => 'mobile',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-                [
-                    'locale' => 'fr_CA',
-                    'scope' => 'web',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-            ],
-            [
-                [
-                    'locale' => 'en_US',
-                    'scope' => 'mobile',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-                [
-                    'locale' => 'fr_FR',
-                    'scope' => 'mobile',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-                [
-                    'locale' => 'fr_CA',
-                    'scope' => 'web',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-                [
-                    'locale' => 'fr_FR',
-                    'scope' => 'print',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-                [
-                    'locale' => 'en_US',
-                    'scope' => 'print',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-            ],
-            'filter(input, slice(1, 2))',
-        ];
-
-        yield [
-            [
-                [
-                    'locale' => 'en_US',
-                    'scope' => 'mobile',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-                [
-                    'locale' => 'fr_FR',
-                    'scope' => 'mobile',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-                [
-                    'locale' => 'fr_CA',
-                    'scope' => 'web',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-            ],
-            [
-                [
-                    'locale' => 'en_US',
-                    'scope' => 'mobile',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-                [
-                    'locale' => 'fr_FR',
-                    'scope' => 'mobile',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-                [
-                    'locale' => 'fr_CA',
-                    'scope' => 'web',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-                [
-                    'locale' => 'fr_FR',
-                    'scope' => 'print',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-                [
-                    'locale' => 'en_US',
-                    'scope' => 'print',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-            ],
-            'filter(input, head(3))',
-        ];
-
-        yield [
-            [
-                [
-                    'locale' => 'fr_CA',
-                    'scope' => 'web',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-                [
-                    'locale' => 'fr_FR',
-                    'scope' => 'print',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-                [
-                    'locale' => 'en_US',
-                    'scope' => 'print',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-            ],
-            [
-                [
-                    'locale' => 'en_US',
-                    'scope' => 'mobile',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-                [
-                    'locale' => 'fr_FR',
-                    'scope' => 'mobile',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-                [
-                    'locale' => 'fr_CA',
-                    'scope' => 'web',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-                [
-                    'locale' => 'fr_FR',
-                    'scope' => 'print',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-                [
-                    'locale' => 'en_US',
-                    'scope' => 'print',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-            ],
-            'filter(input, tail(3))',
-        ];
-
-        yield [
-            [
-                [
-                    'locale' => 'en_US',
-                    'scope' => 'mobile',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-            ],
-            [
-                [
-                    'locale' => 'en_US',
-                    'scope' => 'mobile',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-                [
-                    'locale' => 'fr_CA',
-                    'scope' => 'web',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-                [
-                    'locale' => 'fr_FR',
-                    'scope' => 'print',
-                    'data' => 'Lorem ipsum dolor sit amet',
-                ],
-            ],
-            'filter(input, first())',
+            'akeneo\\filter(input, akeneo\\locale("fr_FR"), akeneo\\coalesce("print", "web"))',
         ];
 
         yield [
@@ -570,7 +380,202 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'filter(input, last())',
+            'akeneo\\filter(input, akeneo\\locale("fr_FR"), akeneo\\coalesce("web", "print"))',
+        ];
+
+        yield [
+            [
+                [
+                    'locale' => 'fr_FR',
+                    'scope' => 'mobile',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+                [
+                    'locale' => 'fr_CA',
+                    'scope' => 'web',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+            ],
+            [
+                [
+                    'locale' => 'en_US',
+                    'scope' => 'mobile',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+                [
+                    'locale' => 'fr_FR',
+                    'scope' => 'mobile',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+                [
+                    'locale' => 'fr_CA',
+                    'scope' => 'web',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+                [
+                    'locale' => 'fr_FR',
+                    'scope' => 'print',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+                [
+                    'locale' => 'en_US',
+                    'scope' => 'print',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+            ],
+            'akeneo\\filter(input, akeneo\\slice(1, 2))',
+        ];
+
+        yield [
+            [
+                [
+                    'locale' => 'en_US',
+                    'scope' => 'mobile',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+                [
+                    'locale' => 'fr_FR',
+                    'scope' => 'mobile',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+                [
+                    'locale' => 'fr_CA',
+                    'scope' => 'web',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+            ],
+            [
+                [
+                    'locale' => 'en_US',
+                    'scope' => 'mobile',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+                [
+                    'locale' => 'fr_FR',
+                    'scope' => 'mobile',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+                [
+                    'locale' => 'fr_CA',
+                    'scope' => 'web',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+                [
+                    'locale' => 'fr_FR',
+                    'scope' => 'print',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+                [
+                    'locale' => 'en_US',
+                    'scope' => 'print',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+            ],
+            'akeneo\\filter(input, akeneo\\head(3))',
+        ];
+
+        yield [
+            [
+                [
+                    'locale' => 'fr_CA',
+                    'scope' => 'web',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+                [
+                    'locale' => 'fr_FR',
+                    'scope' => 'print',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+                [
+                    'locale' => 'en_US',
+                    'scope' => 'print',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+            ],
+            [
+                [
+                    'locale' => 'en_US',
+                    'scope' => 'mobile',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+                [
+                    'locale' => 'fr_FR',
+                    'scope' => 'mobile',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+                [
+                    'locale' => 'fr_CA',
+                    'scope' => 'web',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+                [
+                    'locale' => 'fr_FR',
+                    'scope' => 'print',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+                [
+                    'locale' => 'en_US',
+                    'scope' => 'print',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+            ],
+            'akeneo\\filter(input, akeneo\\tail(3))',
+        ];
+
+        yield [
+            [
+                [
+                    'locale' => 'en_US',
+                    'scope' => 'mobile',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+            ],
+            [
+                [
+                    'locale' => 'en_US',
+                    'scope' => 'mobile',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+                [
+                    'locale' => 'fr_CA',
+                    'scope' => 'web',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+                [
+                    'locale' => 'fr_FR',
+                    'scope' => 'print',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+            ],
+            'akeneo\\filter(input, akeneo\\first())',
+        ];
+
+        yield [
+            [
+                [
+                    'locale' => 'fr_FR',
+                    'scope' => 'print',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+            ],
+            [
+                [
+                    'locale' => 'en_US',
+                    'scope' => 'mobile',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+                [
+                    'locale' => 'fr_CA',
+                    'scope' => 'web',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+                [
+                    'locale' => 'fr_FR',
+                    'scope' => 'print',
+                    'data' => 'Lorem ipsum dolor sit amet',
+                ],
+            ],
+            'akeneo\\filter(input, akeneo\\last())',
         ];
 
         yield [
@@ -603,7 +608,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'filter(input, offset(1))',
+            'akeneo\\filter(input, akeneo\\offset(1))',
         ];
 
         yield [
@@ -646,7 +651,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'filter(input, locale("fr_FR", "fr_CA", "en_US"))',
+            'akeneo\\filter(input, akeneo\\locale("fr_FR", "fr_CA", "en_US"))',
         ];
 
         yield [
@@ -699,7 +704,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'filter(input, scope("print", "mobile", "web"))',
+            'akeneo\\filter(input, akeneo\\scope("print", "mobile", "web"))',
         ];
 
         yield [
@@ -737,7 +742,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'filter(input, scope("print", "mobile", "web"), first())',
+            'akeneo\\filter(input, akeneo\\scope("print", "mobile", "web"), akeneo\\first())',
         ];
     }
 

@@ -17,11 +17,19 @@ final class AllOf extends ExpressionFunction
 
     private function compile(string ...$filters)
     {
+        $pattern =<<<COMPILED
+            function (array \$input) {
+                return array_filter(\$input, function (\$item) {
+                    return %s;
+                });
+            }
+            COMPILED;
+
         $compiled = array_map(function ($item) {
             return sprintf('(%s)($item)', $item);
         }, $filters);
 
-        return sprintf('function(array $input) {return array_filter($input, function ($item) {return %s;});}', implode(' && ', $compiled));
+        return sprintf($pattern, implode(' && ', $compiled));
     }
 
     private function evaluate(array $context, callable ...$filters)

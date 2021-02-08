@@ -18,16 +18,16 @@ final class AnyOf extends ExpressionFunction
     private function compile(string ...$filters)
     {
         $pattern =<<<COMPILED
-function(array \$input) {
-    return %s;
-}
-COMPILED;
+            function (array \$input) {
+                return %s;
+            }
+            COMPILED;
 
         $compiled = array_map(function ($item) {
             return sprintf('(%s)($input)', $item);
         }, $filters);
 
-        return sprintf($pattern, implode(' + ', $compiled));
+        return sprintf($pattern, implode(' + ', array_reverse($compiled, false)));
     }
 
     private function evaluate(array $context, callable ...$filters)

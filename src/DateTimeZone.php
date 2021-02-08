@@ -21,7 +21,7 @@ final class DateTimeZone extends ExpressionFunction
             return sprintf('new \DateTimeImmutable(%s, new \DateTimeZone(%s))', $date, $zone);
         }
 
-        return sprintf('DateTime::createFromFormat(%s, %s, new \DateTimeZone(%s))', $date, $format, $zone);
+        return sprintf('\DateTimeImmutable::createFromFormat(%s, %s, new \DateTimeZone(%s))', $date, $format, $zone);
     }
 
     private function evaluate(array $context, string $date, string $zone, ?string $format = null)
@@ -30,6 +30,6 @@ final class DateTimeZone extends ExpressionFunction
             return new \DateTimeImmutable($date, new \DateTimeZone($zone));
         }
 
-        return DateTime::createFromFormat($date, $format, new \DateTimeZone($zone));
+        return \DateTimeImmutable::createFromFormat($date, $format, new \DateTimeZone($zone));
     }
 }
