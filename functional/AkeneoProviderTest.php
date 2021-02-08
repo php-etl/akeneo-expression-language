@@ -5,9 +5,24 @@ namespace functional\Kiboko\Component\ExpressionLanguage\Akeneo;
 use Kiboko\Component\ExpressionLanguage\Akeneo\AkeneoFilterProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
+use Vfs\FileSystem;
 
 class AkeneoProviderTest extends TestCase
 {
+private ?FileSystem $fs = null;
+
+    protected function setUp(): void
+    {
+        $this->fs = FileSystem::factory('vfs://');
+        $this->fs->mount();
+    }
+
+    protected function tearDown(): void
+    {
+        $this->fs->unmount();
+        $this->fs = null;
+    }
+
     public function dataProvider()
     {
         yield [
@@ -751,8 +766,9 @@ class AkeneoProviderTest extends TestCase
     {
         $interpreter = new ExpressionLanguage(null, [new AkeneoFilterProvider()]);
 
-        $compiled = include 'data://application/x-php;base64,' . base64_encode($sources = '<?php return function(array $input) {return ' . ($interpreter->compile($expression, ['input'])) . ';};');
-//        echo $sources;
+        $filename =  'vfs://' . hash('sha512', random_bytes(512)) . '.php';
+        file_put_contents($filename, '<?php return function(array $input) {return ' . ($interpreter->compile($expression, ['input'])) . ';};');
+        $compiled = include $filename;
 
         $this->assertEquals($expected, $compiled($input));
     }

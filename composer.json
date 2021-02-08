@@ -21,7 +21,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",
-        "johnkary/phpunit-speedtrap": "4.0.x-dev"
+        "johnkary/phpunit-speedtrap": "4.0.x-dev",
+        "adlawson/vfs": "dev-develop"
     },
     "autoload": {
         "psr-4": {
