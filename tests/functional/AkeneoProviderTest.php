@@ -9,7 +9,7 @@ use Vfs\FileSystem;
 
 class AkeneoProviderTest extends TestCase
 {
-private ?FileSystem $fs = null;
+    private ?FileSystem $fs = null;
 
     protected function setUp(): void
     {
@@ -60,7 +60,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'akeneo\\filter(input, akeneo\\locale("fr_FR"))',
+            'filter(input, locale("fr_FR"))',
         ];
 
         yield [
@@ -87,7 +87,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'akeneo\\filter(input, akeneo\\locale("it_IT"))',
+            'filter(input, locale("it_IT"))',
         ];
 
         yield [
@@ -125,7 +125,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'akeneo\\filter(input, akeneo\\scope("print"))',
+            'filter(input, scope("print"))',
         ];
 
         yield [
@@ -152,7 +152,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'akeneo\\filter(input, akeneo\\scope("mobile"))',
+            'filter(input, scope("mobile"))',
         ];
 
         yield [
@@ -185,7 +185,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'akeneo\\filter(input, akeneo\\scope("print"), akeneo\\locale("fr_FR"))',
+            'filter(input, scope("print"), locale("fr_FR"))',
         ];
 
         yield [
@@ -228,7 +228,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'akeneo\\filter(input, akeneo\\locale("fr_FR", "fr_CA"))',
+            'filter(input, locale("fr_FR", "fr_CA"))',
         ];
 
         yield [
@@ -271,7 +271,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'akeneo\\filter(input, akeneo\\scope("web", "print"))',
+            'filter(input, scope("web", "print"))',
         ];
 
         yield [
@@ -314,7 +314,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'akeneo\\filter(input, akeneo\\anyOf(akeneo\\scope("web"), akeneo\\locale("fr_FR")))',
+            'filter(input, anyOf(scope("web"), locale("fr_FR")))',
         ];
 
         yield [
@@ -352,7 +352,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'akeneo\\filter(input, akeneo\\locale("fr_FR"), akeneo\\coalesce("print", "web"))',
+            'filter(input, locale("fr_FR"), coalesce("print", "web"))',
         ];
 
         yield [
@@ -380,7 +380,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'akeneo\\filter(input, akeneo\\locale("fr_FR"), akeneo\\coalesce("web", "print"))',
+            'filter(input, locale("fr_FR"), coalesce("web", "print"))',
         ];
 
         yield [
@@ -423,7 +423,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'akeneo\\filter(input, akeneo\\slice(1, 2))',
+            'filter(input, slice(1, 2))',
         ];
 
         yield [
@@ -471,7 +471,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'akeneo\\filter(input, akeneo\\head(3))',
+            'filter(input, head(3))',
         ];
 
         yield [
@@ -519,7 +519,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'akeneo\\filter(input, akeneo\\tail(3))',
+            'filter(input, tail(3))',
         ];
 
         yield [
@@ -547,7 +547,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'akeneo\\filter(input, akeneo\\first())',
+            'filter(input, first())',
         ];
 
         yield [
@@ -575,7 +575,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'akeneo\\filter(input, akeneo\\last())',
+            'filter(input, last())',
         ];
 
         yield [
@@ -608,7 +608,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'akeneo\\filter(input, akeneo\\offset(1))',
+            'filter(input, offset(1))',
         ];
 
         yield [
@@ -651,7 +651,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'akeneo\\filter(input, akeneo\\locale("fr_FR", "fr_CA", "en_US"))',
+            'filter(input, locale("fr_FR", "fr_CA", "en_US"))',
         ];
 
         yield [
@@ -704,7 +704,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'akeneo\\filter(input, akeneo\\scope("print", "mobile", "web"))',
+            'filter(input, scope("print", "mobile", "web"))',
         ];
 
         yield [
@@ -742,7 +742,7 @@ private ?FileSystem $fs = null;
                     'data' => 'Lorem ipsum dolor sit amet',
                 ],
             ],
-            'akeneo\\filter(input, akeneo\\scope("print", "mobile", "web"), akeneo\\first())',
+            'filter(input, scope("print", "mobile", "web"), first())',
         ];
     }
 
