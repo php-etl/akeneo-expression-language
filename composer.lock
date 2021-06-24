@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "923b3c0ecd98835939471e5ecb76ef16",
+    "content-hash": "c60dd6df5cf09e61ef423dce3c43b68c",
     "packages": [
         {
             "name": "nikic/php-parser",
-            "version": "v4.10.4",
+            "version": "v4.10.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "c6d052fc58cb876152f89f532b95a8d7907e7f0e"
+                "reference": "4432ba399e47c66624bc73c8c0f811e5c109576f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/c6d052fc58cb876152f89f532b95a8d7907e7f0e",
-                "reference": "c6d052fc58cb876152f89f532b95a8d7907e7f0e",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/4432ba399e47c66624bc73c8c0f811e5c109576f",
+                "reference": "4432ba399e47c66624bc73c8c0f811e5c109576f",
                 "shasum": ""
             },
             "require": {
@@ -58,9 +58,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v4.10.4"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.10.5"
             },
-            "time": "2020-12-20T10:01:03+00:00"
+            "time": "2021-05-03T19:11:20+00:00"
         },
         {
             "name": "psr/cache",
@@ -833,12 +833,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/johnkary/phpunit-speedtrap.git",
-                "reference": "434865fe20fd2791f53a2ff5bf409a42a5a3771c"
+                "reference": "5f9b160eac87e975f1c6ca9faee5125f0616fba3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/johnkary/phpunit-speedtrap/zipball/434865fe20fd2791f53a2ff5bf409a42a5a3771c",
-                "reference": "434865fe20fd2791f53a2ff5bf409a42a5a3771c",
+                "url": "https://api.github.com/repos/johnkary/phpunit-speedtrap/zipball/5f9b160eac87e975f1c6ca9faee5125f0616fba3",
+                "reference": "5f9b160eac87e975f1c6ca9faee5125f0616fba3",
                 "shasum": ""
             },
             "require": {
@@ -876,9 +876,9 @@
             ],
             "support": {
                 "issues": "https://github.com/johnkary/phpunit-speedtrap/issues",
-                "source": "https://github.com/johnkary/phpunit-speedtrap/tree/master"
+                "source": "https://github.com/johnkary/phpunit-speedtrap/tree/v4.0.0"
             },
-            "time": "2020-12-30T04:28:08+00:00"
+            "time": "2021-05-03T02:37:05+00:00"
         },
         {
             "name": "mybuilder/phpunit-accelerator",
@@ -2925,7 +2925,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "nikic/php-parser": 20,
         "johnkary/phpunit-speedtrap": 20,
         "adlawson/vfs": 20
     },
