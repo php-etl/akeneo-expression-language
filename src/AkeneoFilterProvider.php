@@ -26,6 +26,7 @@ final class AkeneoFilterProvider implements ExpressionFunctionProviderInterface
             new DateTimeZone('dateTimeZone'),
             new MetricAmount('metricAmount'),
             new MetricUnit('metricUnit'),
+            new FormatMetric('metricUnit'),
         ];
     }
 }
