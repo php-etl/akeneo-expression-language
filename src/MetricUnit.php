@@ -18,12 +18,12 @@ final class MetricUnit extends ExpressionFunction
     private function compile(string $value)
     {
         return <<<"PATTERN"
-            is_null(${value}) || !is_array(${value}) || !array_key_exists('unit', ${value}) ? null : ${value}['unit']
+            !is_array(${value}) || !array_key_exists('unit', ${value}) ? null : ${value}['unit']
             PATTERN;
     }
 
     private function evaluate(array $context, array $value)
     {
-        return is_null($value) || !is_array($value) || !array_key_exists('unit', $value) ? null : $value['unit'];
+        return !is_array($value) || !array_key_exists('unit', $value) ? null : $value['unit'];
     }
 }
