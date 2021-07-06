@@ -20,7 +20,7 @@ class FormatMetric extends ExpressionFunction
     private function compile($attribut, $locale)
     {
         return <<<"PATTERN"
-            is_null(${attribut}) || !is_array(${attribut}) || !array_key_exists('unit', ${attribut}) || 
+            !is_array(${attribut}) || !array_key_exists('unit', ${attribut}) || 
              !array_key_exists('unit', {$attribut}) ? null : (function (\$unit, \$amount,\$locale) {
                          \$fmt = numfmt_create(\$locale, \NumberFormatter::DECIMAL);
             \$formattedAmount = numfmt_format(\$fmt, \$amount);
@@ -167,11 +167,11 @@ class FormatMetric extends ExpressionFunction
 PATTERN;
     }
 
-    private function evaluate(array $context, array $attribut, string $format)
+    private function evaluate(array $context, array $attribut, string $locale)
     {
-        return is_null($value) || !is_array($value) ||
-        !array_key_exists('amount', $value) || !array_key_exists('unit', $value) ? null : (function ($unit, $amount,$locale) {
-            $fmt = numfmt_create($locale, NumberFormatter::DECIMAL);
+        return !is_array($attribut) ||
+        !array_key_exists('amount', $attribut) || !array_key_exists('unit', $attribut) ? null : (function ($unit, $amount,$locale) {
+            $fmt = numfmt_create($locale, \NumberFormatter::DECIMAL);
             $formattedAmount = numfmt_format($fmt, $amount);
             $mapping = [
                 'SQUARE_MILLIMETER' => 'mm²',
@@ -311,10 +311,10 @@ PATTERN;
                 throw new \RuntimeException(sprintf('Unknow Akeneo unit %s', $unit));
             }
 
-            return $mapping['unit'];
+            return $mapping[$unit];
         })(
-            $value['unit'],
-            $value['amount'],
+            $attribut['unit'],
+            $attribut['amount'],
             $locale
         );
     }
