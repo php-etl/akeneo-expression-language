@@ -311,7 +311,7 @@ PATTERN;
                 throw new \RuntimeException(sprintf('Unknow Akeneo unit %s', $unit));
             }
 
-            return $mapping[$unit];
+            return sprintf('%s %s', $formattedAmount, $mapping[$unit]);
         })(
             $attribut['unit'],
             $attribut['amount'],
