@@ -15,15 +15,19 @@ final class First extends ExpressionFunction
         );
     }
 
-    private function compile()
+    private function compile($array)
     {
-        return 'function(array $input) {return array_slice($input, 0, 1, true);}';
+        return <<<"PHP"
+            (function(\$array){
+                return reset(\$array);
+            })($array)
+PHP;
     }
 
-    private function evaluate(array $context)
+    private function evaluate(array $context, $array)
     {
-        return function (array $input) {
-            return array_slice($input, 0, 1, true);
-        };
+        return (function ($array) {
+            return reset($array);
+        })($array);
     }
 }
