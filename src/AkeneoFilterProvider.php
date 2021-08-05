@@ -27,6 +27,7 @@ final class AkeneoFilterProvider implements ExpressionFunctionProviderInterface
             new MetricAmount('metricAmount'),
             new MetricUnit('metricUnit'),
             new FormatMetric('formatMetric'),
+            new ConvertMetric('convertMetric'),
         ];
     }
 }
