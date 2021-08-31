@@ -28,6 +28,7 @@ final class AkeneoFilterProvider implements ExpressionFunctionProviderInterface
             new MetricUnit('metricUnit'),
             new FormatMetric('formatMetric'),
             new ConvertMetric('convertMetric'),
+            new TimestampToDate('timestampToDate')
         ];
     }
 }
