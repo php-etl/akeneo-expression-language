@@ -18,7 +18,7 @@
         "php": "^7.2",
         "nikic/php-parser": "^4.2",
         "symfony/expression-language": "^3.4",
-        "php-etl/phpspec-extension": "^1.0@dev"
+        "php-etl/phpspec-extension": "^0.1.0@dev"
     },
     "require-dev": {
         "phpspec/phpspec": "^5.1",
@@ -43,7 +43,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-master": "0.1.x-dev"
         }
     }
 }
