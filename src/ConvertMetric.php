@@ -20,7 +20,7 @@ class ConvertMetric extends ExpressionFunction
     private function compile($attribut)
     {
         return <<<"PHP"
-            (function () use (\$input) {
+            (function () {
             \$attribut = $attribut;
             return !(is_array(\$attribut)
             && array_key_exists('amount', \$attribut)
@@ -42,8 +42,7 @@ PHP;
 
     private function evaluate(array $context, array $attribut)
     {
-        return (function () use ($input) {
-            $attribut = $attribut;
+        return (function () use ($attribut) {
             return (is_array($attribut)
                 && array_key_exists('amount', $attribut)
                 && array_key_exists('unit', $attribut)) ? null : (function ($attribut) {
