@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\ExpressionLanguage\Akeneo;
 
@@ -17,15 +19,15 @@ final class Locale extends ExpressionFunction
 
     private function compile(string ...$locales)
     {
-        $pattern =<<<"PATTERN"
-function (array \$input): array {
-    \$output = array_filter(\$input, function(array \$item) {
-        return in_array(\$item['locale'], [%s]);
-    });
+        $pattern = <<<'PATTERN'
+            function (array $input): array {
+                $output = array_filter($input, function(array $item) {
+                    return in_array($item['locale'], [%s]);
+                });
 
-    return \$output;
-}
-PATTERN;
+                return $output;
+            }
+            PATTERN;
 
         return sprintf($pattern, implode(', ', $locales));
     }
@@ -33,11 +35,7 @@ PATTERN;
     private function evaluate(array $context, ?string ...$locales)
     {
         return function (array $input) use ($locales): array {
-            $output = array_filter($input, function (array $item) use ($locales) {
-                return in_array($item['locale'], $locales);
-            });
-
-            return $output;
+            return array_filter($input, fn (array $item) => \in_array($item['locale'], $locales));
         };
     }
 }

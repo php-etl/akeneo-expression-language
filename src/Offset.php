@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\ExpressionLanguage\Akeneo;
 
@@ -22,8 +24,6 @@ final class Offset extends ExpressionFunction
 
     private function evaluate(array $context, int $offset)
     {
-        return function (array $input) use ($offset) {
-            return array_slice($input, $offset, null, true);
-        };
+        return fn (array $input) => \array_slice($input, $offset, null, true);
     }
 }

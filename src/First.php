@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\ExpressionLanguage\Akeneo;
 
@@ -18,16 +20,14 @@ final class First extends ExpressionFunction
     private function compile($array)
     {
         return <<<"PHP"
-            (function(\$array){
-                return reset(\$array);
-            })($array)
-PHP;
+                        (function(\$array){
+                            return reset(\$array);
+                        })({$array})
+            PHP;
     }
 
     private function evaluate(array $context, $array)
     {
-        return (function ($array) {
-            return reset($array);
-        })($array);
+        return (fn ($array) => reset($array))($array);
     }
 }

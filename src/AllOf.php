@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\ExpressionLanguage\Akeneo;
 
@@ -17,17 +19,15 @@ final class AllOf extends ExpressionFunction
 
     private function compile(string ...$filters)
     {
-        $pattern =<<<COMPILED
-            function (array \$input) {
-                return array_filter(\$input, function (\$item) {
+        $pattern = <<<'COMPILED'
+            function (array $input) {
+                return array_filter($input, function ($item) {
                     return %s;
                 });
             }
             COMPILED;
 
-        $compiled = array_map(function ($item) {
-            return sprintf('(%s)($item)', $item);
-        }, $filters);
+        $compiled = array_map(fn ($item) => sprintf('(%s)($item)', $item), $filters);
 
         return sprintf($pattern, implode(' && ', $compiled));
     }
@@ -37,9 +37,7 @@ final class AllOf extends ExpressionFunction
         return function (array $input) use ($filters) {
             return array_intersect_key(
                 $input,
-                ...array_map(function (callable $filter) use ($input) {
-                    return $filter($input);
-                }, $filters)
+                ...array_map(fn (callable $filter) => $filter($input), $filters)
             );
         };
     }

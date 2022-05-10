@@ -20,41 +20,41 @@ class ConvertMetric extends ExpressionFunction
     private function compile($attribut)
     {
         return <<<"PHP"
-            (function () {
-            \$attribut = $attribut;
-            return !(is_array(\$attribut)
-            && array_key_exists('amount', \$attribut)
-            && array_key_exists('unit', \$attribut)) ? null : (function (\$attribut) {
-                if (\$attribut['unit'] !== 'MILLIMETER') {
-                    return \$attribut;
-                }
+                        (function () {
+                        \$attribut = {$attribut};
+                        return !(is_array(\$attribut)
+                        && array_key_exists('amount', \$attribut)
+                        && array_key_exists('unit', \$attribut)) ? null : (function (\$attribut) {
+                            if (\$attribut['unit'] !== 'MILLIMETER') {
+                                return \$attribut;
+                            }
 
-                return [
-                    'unit' => 'CENTIMETER',
-                    'amount' => \$attribut['amount'] / 10
-                ];
-            })(
-                \$attribut
-            );
-        })()
-PHP;
+                            return [
+                                'unit' => 'CENTIMETER',
+                                'amount' => \$attribut['amount'] / 10
+                            ];
+                        })(
+                            \$attribut
+                        );
+                    })()
+            PHP;
     }
 
     private function evaluate(array $context, array $attribut)
     {
         return (function () use ($attribut) {
-            return (is_array($attribut)
-                && array_key_exists('amount', $attribut)
-                && array_key_exists('unit', $attribut)) ? null : (function ($attribut) {
-                if ($attribut['unit'] !== 'MILLIMETER') {
-                    return $attribut;
-                }
+            return (\is_array($attribut)
+                && \array_key_exists('amount', $attribut)
+                && \array_key_exists('unit', $attribut)) ? null : (function ($attribut) {
+                    if ('MILLIMETER' !== $attribut['unit']) {
+                        return $attribut;
+                    }
 
-                return [
-                    'unit' => 'CENTIMETER',
-                    'amount' => $attribut['amount'] / 10
-                ];
-            })(
+                    return [
+                        'unit' => 'CENTIMETER',
+                        'amount' => $attribut['amount'] / 10,
+                    ];
+                })(
                 $attribut
             );
         })();

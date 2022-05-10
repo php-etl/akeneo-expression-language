@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace functional\Kiboko\Component\ExpressionLanguage\Akeneo;
 
 use Kiboko\Component\ExpressionLanguage\Akeneo\AkeneoFilterProvider;
@@ -7,6 +9,10 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use Vfs\FileSystem;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class AkeneoProviderTest extends TestCase
 {
     private ?FileSystem $fs = null;
@@ -747,13 +753,11 @@ class AkeneoProviderTest extends TestCase
     }
 
     /**
-     * @param array $expected
-     * @param array $input
-     * @param string $expression
-     *
      * @dataProvider dataProvider
+     *
+     * @test
      */
-    public function testExecutingFilter(array $expected, array $input, string $expression)
+    public function executingFilter(array $expected, array $input, string $expression): void
     {
         $interpreter = new ExpressionLanguage(null, [new AkeneoFilterProvider()]);
 
@@ -761,18 +765,16 @@ class AkeneoProviderTest extends TestCase
     }
 
     /**
-     * @param array $expected
-     * @param array $input
-     * @param string $expression
-     *
      * @dataProvider dataProvider
+     *
+     * @test
      */
-    public function testCompiledFilter(array $expected, array $input, string $expression)
+    public function compiledFilter(array $expected, array $input, string $expression): void
     {
         $interpreter = new ExpressionLanguage(null, [new AkeneoFilterProvider()]);
 
-        $filename =  'vfs://' . hash('sha512', random_bytes(512)) . '.php';
-        file_put_contents($filename, '<?php return function(array $input) {return ' . ($interpreter->compile($expression, ['input'])) . ';};');
+        $filename = 'vfs://'.hash('sha512', random_bytes(512)).'.php';
+        file_put_contents($filename, '<?php return function(array $input) {return '.($interpreter->compile($expression, ['input'])).';};');
         $compiled = include $filename;
 
         $this->assertEquals($expected, $compiled($input));

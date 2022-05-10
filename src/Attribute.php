@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\ExpressionLanguage\Akeneo;
 
@@ -31,6 +33,7 @@ final class Attribute extends ExpressionFunction
         foreach (array_reverse($callbacks) as $callback) {
             $output = $callback($output);
         }
+
         return array_values($output)[0]['data'] ?? null;
     }
 }

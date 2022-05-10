@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\ExpressionLanguage\Akeneo;
 
@@ -18,12 +20,12 @@ final class MetricAmount extends ExpressionFunction
     private function compile(string $value, int $decimalRound = 4)
     {
         return <<<PATTERN
-            !is_array(${value}) || !array_key_exists('amount', ${value}) ? null : round(floatval(${value}['amount']), ${decimalRound})
+            !is_array({$value}) || !array_key_exists('amount', {$value}) ? null : round(floatval({$value}['amount']), {$decimalRound})
             PATTERN;
     }
 
     private function evaluate(array $context, array $value, int $decimalRound)
     {
-        return !is_array($value) || !array_key_exists('amount', $value) ? null : round(floatval($value['amount']), $decimalRound);
+        return !\is_array($value) || !\array_key_exists('amount', $value) ? null : round((float) ($value['amount']), $decimalRound);
     }
 }

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\ExpressionLanguage\Akeneo;
 
@@ -22,8 +24,6 @@ final class Head extends ExpressionFunction
 
     private function evaluate(array $context, int $length)
     {
-        return function (array $input) use ($length) {
-            return array_slice($input, 0, $length, true);
-        };
+        return fn (array $input) => \array_slice($input, 0, $length, true);
     }
 }
