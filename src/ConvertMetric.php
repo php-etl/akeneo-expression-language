@@ -17,7 +17,7 @@ class ConvertMetric extends ExpressionFunction
         );
     }
 
-    private function compile($attribut)
+    private function compile($attribut): string
     {
         return <<<"PHP"
                         (function () {
@@ -40,7 +40,7 @@ class ConvertMetric extends ExpressionFunction
             PHP;
     }
 
-    private function evaluate(array $context, array $attribut)
+    private function evaluate(array $context, array $attribut): callable
     {
         return (function () use ($attribut) {
             return (\is_array($attribut)

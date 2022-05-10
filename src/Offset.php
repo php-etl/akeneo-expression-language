@@ -17,12 +17,12 @@ final class Offset extends ExpressionFunction
         );
     }
 
-    private function compile(string $offset)
+    private function compile(string $offset): string
     {
         return sprintf('function(array $input) {return array_slice($input, %s, null, true);}', $offset);
     }
 
-    private function evaluate(array $context, int $offset)
+    private function evaluate(array $context, int $offset): callable
     {
         return fn (array $input) => \array_slice($input, $offset, null, true);
     }

@@ -17,7 +17,7 @@ final class First extends ExpressionFunction
         );
     }
 
-    private function compile()
+    private function compile(): string
     {
         return <<<'PHP'
             (function($array){
@@ -26,7 +26,7 @@ final class First extends ExpressionFunction
             PHP;
     }
 
-    private function evaluate(array $context)
+    private function evaluate(array $context): callable
     {
         return fn ($array) => [reset($array)];
     }

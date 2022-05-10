@@ -17,12 +17,12 @@ final class Slice extends ExpressionFunction
         );
     }
 
-    private function compile(string $offset, string $length)
+    private function compile(string $offset, string $length): string
     {
         return sprintf('function(array $input) {return array_slice($input, %s, %s, true);}', $offset, $length);
     }
 
-    private function evaluate(array $context, int $offset, int $length)
+    private function evaluate(array $context, int $offset, int $length): callable
     {
         return fn (array $input) => \array_slice($input, $offset, $length, true);
     }

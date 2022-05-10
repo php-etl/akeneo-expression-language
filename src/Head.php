@@ -17,12 +17,12 @@ final class Head extends ExpressionFunction
         );
     }
 
-    private function compile(string $length)
+    private function compile(string $length): string
     {
         return sprintf('function(array $input) {return array_slice($input, 0, %s, true);}', $length);
     }
 
-    private function evaluate(array $context, int $length)
+    private function evaluate(array $context, int $length): callable
     {
         return fn (array $input) => \array_slice($input, 0, $length, true);
     }

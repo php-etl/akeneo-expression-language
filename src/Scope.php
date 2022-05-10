@@ -17,7 +17,7 @@ final class Scope extends ExpressionFunction
         );
     }
 
-    private function compile(string ...$scopes)
+    private function compile(string ...$scopes): string
     {
         $pattern = <<<'PATTERN'
             function (array $input): array {
@@ -32,7 +32,7 @@ final class Scope extends ExpressionFunction
         return sprintf($pattern, implode(', ', $scopes));
     }
 
-    private function evaluate(array $context, string ...$scopes)
+    private function evaluate(array $context, string ...$scopes): callable
     {
         return fn (array $input): array => array_filter($input, fn (array $item) => \in_array($item['scope'], $scopes));
     }

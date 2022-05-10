@@ -17,7 +17,7 @@ final class AnyOf extends ExpressionFunction
         );
     }
 
-    private function compile(string ...$filters)
+    private function compile(string ...$filters): string
     {
         $pattern = <<<'COMPILED'
             function (array $input) {
@@ -30,7 +30,7 @@ final class AnyOf extends ExpressionFunction
         return sprintf($pattern, implode(' + ', array_reverse($compiled, false)));
     }
 
-    private function evaluate(array $context, callable ...$filters)
+    private function evaluate(array $context, callable ...$filters): callable
     {
         return function (array $input) use ($filters) {
             $output = [];

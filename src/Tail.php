@@ -17,12 +17,12 @@ final class Tail extends ExpressionFunction
         );
     }
 
-    private function compile(string $length)
+    private function compile(string $length): string
     {
         return sprintf('function(array $input) {return array_slice($input, -%s, %s, true);}', $length, $length);
     }
 
-    private function evaluate(array $context, int $length)
+    private function evaluate(array $context, int $length): callable
     {
         return fn (array $input) => \array_slice($input, -$length, $length, true);
     }

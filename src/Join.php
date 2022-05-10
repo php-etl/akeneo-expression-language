@@ -17,12 +17,12 @@ final class Join extends ExpressionFunction
         );
     }
 
-    private function compile(string $value, $glue = '","')
+    private function compile(string $value, $glue = '","'): string
     {
         return sprintf('(implode(%s, (array) %s))', $glue, $value);
     }
 
-    private function evaluate(array $context, $input, string $glue)
+    private function evaluate(array $context, $input, string $glue): callable
     {
         return implode($glue, $input);
     }

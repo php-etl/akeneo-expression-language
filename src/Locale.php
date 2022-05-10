@@ -17,7 +17,7 @@ final class Locale extends ExpressionFunction
         );
     }
 
-    private function compile(string ...$locales)
+    private function compile(string ...$locales): string
     {
         $pattern = <<<'PATTERN'
             function (array $input): array {
@@ -32,7 +32,7 @@ final class Locale extends ExpressionFunction
         return sprintf($pattern, implode(', ', $locales));
     }
 
-    private function evaluate(array $context, ?string ...$locales)
+    private function evaluate(array $context, ?string ...$locales): callable
     {
         return fn (array $input): array => array_filter($input, fn (array $item) => \in_array($item['locale'], $locales));
     }

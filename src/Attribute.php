@@ -29,7 +29,7 @@ final class Attribute extends ExpressionFunction
 
     private function evaluate(array $context, array $input, callable ...$callbacks)
     {
-        $output = $input ?? [];
+        $output = $input;
         foreach (array_reverse($callbacks) as $callback) {
             $output = $callback($output);
         }

@@ -17,12 +17,12 @@ final class Last extends ExpressionFunction
         );
     }
 
-    private function compile()
+    private function compile(): string
     {
         return 'function(array $input) {return array_slice($input, -1, 1, true);}';
     }
 
-    private function evaluate(array $context)
+    private function evaluate(array $context): callable
     {
         return fn (array $input) => \array_slice($input, -1, 1, true);
     }
