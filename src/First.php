@@ -19,15 +19,15 @@ final class First extends ExpressionFunction
 
     private function compile()
     {
-        return <<<"PHP"
-            (function(\$array){
-                return [\\reset(\$array)];
+        return <<<'PHP'
+            (function($array){
+                return [\reset($array)];
             })
             PHP;
     }
 
     private function evaluate(array $context)
     {
-        return (fn ($array) => [\reset($array)]);
+        return fn ($array) => [reset($array)];
     }
 }
