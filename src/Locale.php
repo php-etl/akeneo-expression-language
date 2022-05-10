@@ -34,8 +34,6 @@ final class Locale extends ExpressionFunction
 
     private function evaluate(array $context, ?string ...$locales)
     {
-        return function (array $input) use ($locales): array {
-            return array_filter($input, fn (array $item) => \in_array($item['locale'], $locales));
-        };
+        return fn (array $input): array => array_filter($input, fn (array $item) => \in_array($item['locale'], $locales));
     }
 }

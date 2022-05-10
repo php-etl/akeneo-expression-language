@@ -34,8 +34,6 @@ final class Scope extends ExpressionFunction
 
     private function evaluate(array $context, string ...$scopes)
     {
-        return function (array $input) use ($scopes): array {
-            return array_filter($input, fn (array $item) => \in_array($item['scope'], $scopes));
-        };
+        return fn (array $input): array => array_filter($input, fn (array $item) => \in_array($item['scope'], $scopes));
     }
 }
