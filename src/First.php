@@ -17,17 +17,17 @@ final class First extends ExpressionFunction
         );
     }
 
-    private function compile($array)
+    private function compile()
     {
         return <<<"PHP"
-                        (function(\$array){
-                            return reset(\$array);
-                        })({$array})
+            (function(\$array){
+                return [\\reset(\$array)];
+            })
             PHP;
     }
 
-    private function evaluate(array $context, $array)
+    private function evaluate(array $context)
     {
-        return (fn ($array) => reset($array))($array);
+        return (fn ($array) => [\reset($array)]);
     }
 }
