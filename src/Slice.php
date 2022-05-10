@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\ExpressionLanguage\Akeneo;
 
@@ -15,15 +17,13 @@ final class Slice extends ExpressionFunction
         );
     }
 
-    private function compile(string $offset, string $length)
+    private function compile(string $offset, string $length): string
     {
         return sprintf('function(array $input) {return array_slice($input, %s, %s, true);}', $offset, $length);
     }
 
-    private function evaluate(array $context, int $offset, int $length)
+    private function evaluate(array $context, int $offset, int $length): callable
     {
-        return function (array $input) use ($offset, $length) {
-            return array_slice($input, $offset, $length, true);
-        };
+        return fn (array $input) => \array_slice($input, $offset, $length, true);
     }
 }

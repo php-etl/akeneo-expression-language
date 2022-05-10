@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\ExpressionLanguage\Akeneo;
 
@@ -15,18 +17,18 @@ final class DateTimeZone extends ExpressionFunction
         );
     }
 
-    private function compile(string $date, string $zone, ?string $format = null)
+    private function compile(string $date, string $zone, ?string $format = null): string
     {
-        if ($format === null) {
+        if (null === $format) {
             return sprintf('new \DateTimeImmutable(%s, new \DateTimeZone(%s))', $date, $zone);
         }
 
         return sprintf('\DateTimeImmutable::createFromFormat(%s, %s, new \DateTimeZone(%s))', $date, $format, $zone);
     }
 
-    private function evaluate(array $context, string $date, string $zone, ?string $format = null)
+    private function evaluate(array $context, string $date, string $zone, ?string $format = null): \DateTimeInterface
     {
-        if ($format === null) {
+        if (null === $format) {
             return new \DateTimeImmutable($date, new \DateTimeZone($zone));
         }
 

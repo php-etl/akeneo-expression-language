@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\ExpressionLanguage\Akeneo;
 
@@ -15,29 +17,23 @@ final class Scope extends ExpressionFunction
         );
     }
 
-    private function compile(string ...$scopes)
+    private function compile(string ...$scopes): string
     {
-        $pattern =<<<"PATTERN"
-function (array \$input): array {
-    \$output = array_filter(\$input, function(array \$item) {
-        return in_array(\$item['scope'], [%s]);
-    });
+        $pattern = <<<'PATTERN'
+            function (array $input): array {
+                $output = array_filter($input, function(array $item) {
+                    return in_array($item['scope'], [%s]);
+                });
 
-    return \$output;
-}
-PATTERN;
+                return $output;
+            }
+            PATTERN;
 
         return sprintf($pattern, implode(', ', $scopes));
     }
 
-    private function evaluate(array $context, string ...$scopes)
+    private function evaluate(array $context, string ...$scopes): callable
     {
-        return function (array $input) use ($scopes): array {
-            $output = array_filter($input, function (array $item) use ($scopes) {
-                return in_array($item['scope'], $scopes);
-            });
-
-            return $output;
-        };
+        return fn (array $input): array => array_filter($input, fn (array $item) => \in_array($item['scope'], $scopes));
     }
 }

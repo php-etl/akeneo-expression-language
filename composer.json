@@ -22,8 +22,7 @@
     "require-dev": {
         "phpunit/phpunit": "^9.0",
         "johnkary/phpunit-speedtrap": "4.0.x-dev",
-        "mybuilder/phpunit-accelerator": "*",
-        "adlawson/vfs": "dev-develop"
+        "mybuilder/phpunit-accelerator": "*"
     },
     "autoload": {
         "psr-4": {

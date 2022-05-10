@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\ExpressionLanguage\Akeneo;
 
@@ -15,15 +17,15 @@ final class MetricUnit extends ExpressionFunction
         );
     }
 
-    private function compile(string $value)
+    private function compile(string $value): string
     {
         return <<<"PATTERN"
-            !is_array(${value}) || !array_key_exists('unit', ${value}) ? null : ${value}['unit']
+            !is_array({$value}) || !array_key_exists('unit', {$value}) ? null : {$value}['unit']
             PATTERN;
     }
 
-    private function evaluate(array $context, array $value)
+    private function evaluate(array $context, array $value): string
     {
-        return !is_array($value) || !array_key_exists('unit', $value) ? null : $value['unit'];
+        return !\is_array($value) || !\array_key_exists('unit', $value) ? null : $value['unit'];
     }
 }

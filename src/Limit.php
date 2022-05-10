@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\ExpressionLanguage\Akeneo;
 
@@ -15,23 +17,19 @@ final class Limit extends ExpressionFunction
         );
     }
 
-    private function compile(string ...$filters)
+    private function compile(string ...$filters): string
     {
-        $compiled = array_map(function ($item) {
-            return sprintf('(%s)($item)', $item);
-        }, $filters);
+        $compiled = array_map(fn ($item) => sprintf('(%s)($item)', $item), $filters);
 
         return sprintf('function(array $input) {return array_filter($input, function ($item) {return %s;});}', implode(' && ', $compiled));
     }
 
-    private function evaluate(array $context, callable ...$filters)
+    private function evaluate(array $context, callable ...$filters): callable
     {
         return function (array $input) use ($filters) {
-            return array_slice(
+            return \array_slice(
                 $input,
-                ...array_map(function (callable $filter) use ($input) {
-                    return $filter($input);
-                }, $filters)
+                ...array_map(fn (callable $filter) => $filter($input), $filters)
             );
         };
     }

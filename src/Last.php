@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\ExpressionLanguage\Akeneo;
 
@@ -15,15 +17,13 @@ final class Last extends ExpressionFunction
         );
     }
 
-    private function compile()
+    private function compile(): string
     {
-        return sprintf('function(array $input) {return array_slice($input, -1, 1, true);}');
+        return 'function(array $input) {return array_slice($input, -1, 1, true);}';
     }
 
-    private function evaluate(array $context)
+    private function evaluate(array $context): callable
     {
-        return function (array $input) {
-            return array_slice($input, -1, 1, true);
-        };
+        return fn (array $input) => \array_slice($input, -1, 1, true);
     }
 }

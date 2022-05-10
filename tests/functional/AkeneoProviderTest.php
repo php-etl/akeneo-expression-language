@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace functional\Kiboko\Component\ExpressionLanguage\Akeneo;
 
 use Kiboko\Component\ExpressionLanguage\Akeneo\AkeneoFilterProvider;
@@ -7,25 +9,28 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use Vfs\FileSystem;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class AkeneoProviderTest extends TestCase
 {
-    private ?FileSystem $fs = null;
+    private $resource = null;
 
     protected function setUp(): void
     {
-        $this->fs = FileSystem::factory('vfs://');
-        $this->fs->mount();
+        $this->resource = \tmpfile();
     }
 
     protected function tearDown(): void
     {
-        $this->fs->unmount();
-        $this->fs = null;
+        \fclose($this->resource);
+        $this->resource = null;
     }
 
     public function dataProvider()
     {
-        yield [
+        yield 'Filter locale, filter(input, locale("fr_FR"))' => [
             [
                 [
                     'locale' => 'fr_FR',
@@ -63,7 +68,7 @@ class AkeneoProviderTest extends TestCase
             'filter(input, locale("fr_FR"))',
         ];
 
-        yield [
+        yield 'Filter inexistent locale, filter(input, locale("it_IT"))' => [
             [],
             [
                 [
@@ -90,7 +95,7 @@ class AkeneoProviderTest extends TestCase
             'filter(input, locale("it_IT"))',
         ];
 
-        yield [
+        yield 'Filter scope, filter(input, scope("print"))' => [
             [
                 [
                     'locale' => 'fr_FR',
@@ -128,7 +133,7 @@ class AkeneoProviderTest extends TestCase
             'filter(input, scope("print"))',
         ];
 
-        yield [
+        yield 'Filter inexistent scope, filter(input, scope("mobile"))' => [
             [],
             [
                 [
@@ -155,7 +160,7 @@ class AkeneoProviderTest extends TestCase
             'filter(input, scope("mobile"))',
         ];
 
-        yield [
+        yield 'Filter scope and locale, filter(input, scope("print"), locale("fr_FR"))' => [
             [
                 [
                     'locale' => 'fr_FR',
@@ -188,7 +193,7 @@ class AkeneoProviderTest extends TestCase
             'filter(input, scope("print"), locale("fr_FR"))',
         ];
 
-        yield [
+        yield 'Filter multiple locales, filter(input, locale("fr_FR", "fr_CA"))' => [
             [
                 [
                     'locale' => 'fr_FR',
@@ -231,7 +236,7 @@ class AkeneoProviderTest extends TestCase
             'filter(input, locale("fr_FR", "fr_CA"))',
         ];
 
-        yield [
+        yield 'Filter multiple scopes, filter(input, scope("web", "print"))' => [
             [
                 [
                     'locale' => 'fr_FR',
@@ -274,7 +279,7 @@ class AkeneoProviderTest extends TestCase
             'filter(input, scope("web", "print"))',
         ];
 
-        yield [
+        yield 'Filter scope or locale, filter(input, anyOf(scope("web"), locale("fr_FR")))' => [
             [
                 [
                     'locale' => 'fr_FR',
@@ -317,7 +322,7 @@ class AkeneoProviderTest extends TestCase
             'filter(input, anyOf(scope("web"), locale("fr_FR")))',
         ];
 
-        yield [
+        yield 'Filter with coalesce scope, filter(input, locale("fr_FR"), coalesce("print", "web"))' => [
             [
                 [
                     'locale' => 'fr_FR',
@@ -355,7 +360,7 @@ class AkeneoProviderTest extends TestCase
             'filter(input, locale("fr_FR"), coalesce("print", "web"))',
         ];
 
-        yield [
+        yield 'Filter with coalesce scope, filter(input, locale("fr_FR"), coalesce("web", "print"))' => [
             [
                 [
                     'locale' => 'fr_FR',
@@ -383,7 +388,7 @@ class AkeneoProviderTest extends TestCase
             'filter(input, locale("fr_FR"), coalesce("web", "print"))',
         ];
 
-        yield [
+        yield 'Slice values' => [
             [
                 [
                     'locale' => 'fr_FR',
@@ -426,7 +431,7 @@ class AkeneoProviderTest extends TestCase
             'filter(input, slice(1, 2))',
         ];
 
-        yield [
+        yield 'Head values' => [
             [
                 [
                     'locale' => 'en_US',
@@ -474,7 +479,7 @@ class AkeneoProviderTest extends TestCase
             'filter(input, head(3))',
         ];
 
-        yield [
+        yield 'Tail values' => [
             [
                 [
                     'locale' => 'fr_CA',
@@ -522,7 +527,7 @@ class AkeneoProviderTest extends TestCase
             'filter(input, tail(3))',
         ];
 
-        yield [
+        yield 'First value' => [
             [
                 [
                     'locale' => 'en_US',
@@ -550,7 +555,7 @@ class AkeneoProviderTest extends TestCase
             'filter(input, first())',
         ];
 
-        yield [
+        yield 'Last value' => [
             [
                 [
                     'locale' => 'fr_FR',
@@ -578,7 +583,7 @@ class AkeneoProviderTest extends TestCase
             'filter(input, last())',
         ];
 
-        yield [
+        yield 'Offset value' => [
             [
                 [
                     'locale' => 'fr_CA',
@@ -611,7 +616,7 @@ class AkeneoProviderTest extends TestCase
             'filter(input, offset(1))',
         ];
 
-        yield [
+        yield 'Filter multiple locales with ordering, filter(input, locale("fr_FR", "fr_CA", "en_US"))' => [
             [
                 [
                     'locale' => 'en_US',
@@ -654,7 +659,7 @@ class AkeneoProviderTest extends TestCase
             'filter(input, locale("fr_FR", "fr_CA", "en_US"))',
         ];
 
-        yield [
+        yield 'Filter multiple scopes with ordering, filter(input, scope("print", "mobile", "web"))' => [
             [
                 [
                     'locale' => 'en_US',
@@ -707,7 +712,7 @@ class AkeneoProviderTest extends TestCase
             'filter(input, scope("print", "mobile", "web"))',
         ];
 
-        yield [
+        yield 'Filter multiple scopes keeping first, filter(input, scope("print", "mobile", "web"), first())' => [
             [
                 [
                     'locale' => 'en_US',
@@ -747,13 +752,11 @@ class AkeneoProviderTest extends TestCase
     }
 
     /**
-     * @param array $expected
-     * @param array $input
-     * @param string $expression
-     *
      * @dataProvider dataProvider
+     *
+     * @test
      */
-    public function testExecutingFilter(array $expected, array $input, string $expression)
+    public function executingFilter(array $expected, array $input, string $expression): void
     {
         $interpreter = new ExpressionLanguage(null, [new AkeneoFilterProvider()]);
 
@@ -761,19 +764,16 @@ class AkeneoProviderTest extends TestCase
     }
 
     /**
-     * @param array $expected
-     * @param array $input
-     * @param string $expression
-     *
      * @dataProvider dataProvider
+     *
+     * @test
      */
-    public function testCompiledFilter(array $expected, array $input, string $expression)
+    public function compiledFilter(array $expected, array $input, string $expression): void
     {
         $interpreter = new ExpressionLanguage(null, [new AkeneoFilterProvider()]);
 
-        $filename =  'vfs://' . hash('sha512', random_bytes(512)) . '.php';
-        file_put_contents($filename, '<?php return function(array $input) {return ' . ($interpreter->compile($expression, ['input'])) . ';};');
-        $compiled = include $filename;
+        fwrite($this->resource, '<?php return function(array $input) {return '.($interpreter->compile($expression, ['input'])).';};');
+        $compiled = include stream_get_meta_data($this->resource)['uri'];
 
         $this->assertEquals($expected, $compiled($input));
     }
