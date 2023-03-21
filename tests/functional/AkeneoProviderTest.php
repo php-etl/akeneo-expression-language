@@ -11,8 +11,8 @@ use Vfs\FileSystem;
 
 /**
  * @internal
- * @coversNothing
  */
+#[\PHPUnit\Framework\Attributes\CoversNothing]
 class AkeneoProviderTest extends TestCase
 {
     private $resource = null;
@@ -28,7 +28,7 @@ class AkeneoProviderTest extends TestCase
         $this->resource = null;
     }
 
-    public function dataProvider()
+    public static function dataProvider()
     {
         yield 'Filter locale, filter(input, locale("fr_FR"))' => [
             [
@@ -751,11 +751,8 @@ class AkeneoProviderTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider dataProvider
-     *
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('dataProvider')]
+    #[\PHPUnit\Framework\Attributes\Test]
     public function executingFilter(array $expected, array $input, string $expression): void
     {
         $interpreter = new ExpressionLanguage(null, [new AkeneoFilterProvider()]);
@@ -763,11 +760,8 @@ class AkeneoProviderTest extends TestCase
         $this->assertEquals($expected, $interpreter->evaluate($expression, ['input' => $input]));
     }
 
-    /**
-     * @dataProvider dataProvider
-     *
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('dataProvider')]
+    #[\PHPUnit\Framework\Attributes\Test]
     public function compiledFilter(array $expected, array $input, string $expression): void
     {
         $interpreter = new ExpressionLanguage(null, [new AkeneoFilterProvider()]);

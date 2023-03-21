@@ -12,8 +12,8 @@ class FormatMetric extends ExpressionFunction
     {
         parent::__construct(
             $name,
-            \Closure::fromCallable([$this, 'compile'])->bindTo($this),
-            \Closure::fromCallable([$this, 'evaluate'])->bindTo($this)
+            \Closure::fromCallable($this->compile(...))->bindTo($this),
+            \Closure::fromCallable($this->evaluate(...))->bindTo($this)
         );
     }
 
@@ -171,7 +171,7 @@ class FormatMetric extends ExpressionFunction
             PHP;
     }
 
-    private function evaluate(array $context, array $attribut, string $locale): string
+    private function evaluate(array $context, array $attribut, string $locale): string|null
     {
         return !\is_array($attribut)
         || !\array_key_exists('amount', $attribut) || !\array_key_exists('unit', $attribut) ? null : (function ($unit, $amount, $locale) {

@@ -12,8 +12,8 @@ final class Tail extends ExpressionFunction
     {
         parent::__construct(
             $name,
-            \Closure::fromCallable([$this, 'compile'])->bindTo($this),
-            \Closure::fromCallable([$this, 'evaluate'])->bindTo($this)
+            \Closure::fromCallable($this->compile(...))->bindTo($this),
+            \Closure::fromCallable($this->evaluate(...))->bindTo($this)
         );
     }
 

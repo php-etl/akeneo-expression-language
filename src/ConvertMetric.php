@@ -12,8 +12,8 @@ class ConvertMetric extends ExpressionFunction
     {
         parent::__construct(
             $name,
-            \Closure::fromCallable([$this, 'compile'])->bindTo($this),
-            \Closure::fromCallable([$this, 'evaluate'])->bindTo($this)
+            \Closure::fromCallable($this->compile(...))->bindTo($this),
+            \Closure::fromCallable($this->evaluate(...))->bindTo($this)
         );
     }
 
@@ -42,21 +42,19 @@ class ConvertMetric extends ExpressionFunction
 
     private function evaluate(array $context, array $attribut): callable
     {
-        return (function () use ($attribut) {
-            return (\is_array($attribut)
-                && \array_key_exists('amount', $attribut)
-                && \array_key_exists('unit', $attribut)) ? null : (function ($attribut) {
-                    if ('MILLIMETER' !== $attribut['unit']) {
-                        return $attribut;
-                    }
+        return (fn () => (\is_array($attribut)
+            && \array_key_exists('amount', $attribut)
+            && \array_key_exists('unit', $attribut)) ? null : (function ($attribut) {
+                if ('MILLIMETER' !== $attribut['unit']) {
+                    return $attribut;
+                }
 
-                    return [
-                        'unit' => 'CENTIMETER',
-                        'amount' => $attribut['amount'] / 10,
-                    ];
-                })(
+                return [
+                    'unit' => 'CENTIMETER',
+                    'amount' => $attribut['amount'] / 10,
+                ];
+            })(
                 $attribut
-            );
-        })();
+            ))();
     }
 }

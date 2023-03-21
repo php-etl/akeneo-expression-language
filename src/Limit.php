@@ -12,8 +12,8 @@ final class Limit extends ExpressionFunction
     {
         parent::__construct(
             $name,
-            \Closure::fromCallable([$this, 'compile'])->bindTo($this),
-            \Closure::fromCallable([$this, 'evaluate'])->bindTo($this)
+            \Closure::fromCallable($this->compile(...))->bindTo($this),
+            \Closure::fromCallable($this->evaluate(...))->bindTo($this)
         );
     }
 
@@ -26,11 +26,9 @@ final class Limit extends ExpressionFunction
 
     private function evaluate(array $context, callable ...$filters): callable
     {
-        return function (array $input) use ($filters) {
-            return \array_slice(
-                $input,
-                ...array_map(fn (callable $filter) => $filter($input), $filters)
-            );
-        };
+        return fn (array $input) => \array_slice(
+            $input,
+            ...array_map(fn (callable $filter) => $filter($input), $filters)
+        );
     }
 }
