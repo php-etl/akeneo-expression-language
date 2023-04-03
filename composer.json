@@ -14,19 +14,18 @@
         }
     ],
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "php": "^8.2",
         "nikic/php-parser": "^4.10",
-        "symfony/expression-language": "^5.2 || ^6.0"
+        "symfony/expression-language": "^6.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5 || ^10.0",
+        "phpunit/phpunit": "^10.0",
         "phpstan/phpstan": "^1.10",
         "friendsofphp/php-cs-fixer": "^3.0",
         "infection/infection": "^0.26.18",
-        "rector/rector": "^0.15",
-        "johnkary/phpunit-speedtrap": "5.0.x-dev",
-        "mybuilder/phpunit-accelerator": "*"
+        "rector/rector": "^0.15"
     },
     "autoload": {
         "psr-4": {
@@ -48,8 +47,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-main": "0.3.x-dev",
-            "dev-feature/qualityflow-improvments": "0.3.x-dev"
+            "dev-main": "0.3.x-dev"
         }
     }
 }
