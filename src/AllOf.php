@@ -12,8 +12,8 @@ final class AllOf extends ExpressionFunction
     {
         parent::__construct(
             $name,
-            \Closure::fromCallable([$this, 'compile'])->bindTo($this),
-            \Closure::fromCallable([$this, 'evaluate'])->bindTo($this)
+            $this->compile(...)->bindTo($this),
+            $this->evaluate(...)->bindTo($this)
         );
     }
 
@@ -34,11 +34,9 @@ final class AllOf extends ExpressionFunction
 
     private function evaluate(array $context, callable ...$filters): callable
     {
-        return function (array $input) use ($filters) {
-            return array_intersect_key(
-                $input,
-                ...array_map(fn (callable $filter) => $filter($input), $filters)
-            );
-        };
+        return fn (array $input) => array_intersect_key(
+            $input,
+            ...array_map(fn (callable $filter) => $filter($input), $filters)
+        );
     }
 }

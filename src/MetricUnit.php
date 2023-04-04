@@ -12,8 +12,8 @@ final class MetricUnit extends ExpressionFunction
     {
         parent::__construct(
             $name,
-            \Closure::fromCallable([$this, 'compile'])->bindTo($this),
-            \Closure::fromCallable([$this, 'evaluate'])->bindTo($this)
+            $this->compile(...)->bindTo($this),
+            $this->evaluate(...)->bindTo($this)
         );
     }
 
@@ -24,7 +24,7 @@ final class MetricUnit extends ExpressionFunction
             PATTERN;
     }
 
-    private function evaluate(array $context, array $value): string
+    private function evaluate(array $context, array $value): string|null
     {
         return !\is_array($value) || !\array_key_exists('unit', $value) ? null : $value['unit'];
     }

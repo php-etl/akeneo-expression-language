@@ -12,8 +12,8 @@ final class MetricAmount extends ExpressionFunction
     {
         parent::__construct(
             $name,
-            \Closure::fromCallable([$this, 'compile'])->bindTo($this),
-            \Closure::fromCallable([$this, 'evaluate'])->bindTo($this)
+            $this->compile(...)->bindTo($this),
+            $this->evaluate(...)->bindTo($this)
         );
     }
 
@@ -24,8 +24,8 @@ final class MetricAmount extends ExpressionFunction
             PATTERN;
     }
 
-    private function evaluate(array $context, array $value, int $decimalRound): float
+    private function evaluate(array $context, array $value, int $decimalRound): float|null
     {
-        return !\is_array($value) || !\array_key_exists('amount', $value) ? null : round((float) ($value['amount']), $decimalRound);
+        return !\is_array($value) || !\array_key_exists('amount', $value) ? null : round((float) $value['amount'], $decimalRound);
     }
 }

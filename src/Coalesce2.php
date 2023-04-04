@@ -12,8 +12,8 @@ final class Coalesce2 extends ExpressionFunction
     {
         parent::__construct(
             $name,
-            \Closure::fromCallable([$this, 'compile'])->bindTo($this),
-            \Closure::fromCallable([$this, 'evaluate'])->bindTo($this)
+            $this->compile(...)->bindTo($this),
+            $this->evaluate(...)->bindTo($this)
         );
     }
 
