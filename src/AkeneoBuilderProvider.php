@@ -13,6 +13,8 @@ final class AkeneoBuilderProvider implements ExpressionFunctionProviderInterface
         return [
             new Build('build'),
             new WithValue('withValue'),
+            new WithSimpleOption('withSimpleOption'),
+            new WithMultipleOption('withMultipleOption'),
         ];
     }
 }

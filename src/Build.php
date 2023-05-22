@@ -17,23 +17,13 @@ final class Build extends ExpressionFunction
         );
     }
 
-    private function compile(string $input, string ...$callbacks)
+    private function compile(string $input, string ...$values)
     {
-        $output = sprintf('%s ?? []', $input);
-        foreach ($callbacks as $callback) {
-            $output = sprintf('(%s)(%s)', $callback, $output);
-        }
-
-        return sprintf('array_values(%s)', $output);
+        return sprintf('array_values(array_merge(%s))', implode(', ', $values));
     }
 
-    private function evaluate(array $context, Value ...$values)
+    private function evaluate(array $context, array ...$values)
     {
-        $output = [];
-        foreach ($values as $value) {
-            $output[] = $value->asArray();
-        }
-
-        return array_values($output);
+        return array_values(array_merge(...$values));
     }
 }

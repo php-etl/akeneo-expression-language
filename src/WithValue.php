@@ -17,13 +17,17 @@ final class WithValue extends ExpressionFunction
         );
     }
 
-    private function compile(string $value)
+    private function compile(string $value, string $locale = 'null', string $scope = 'null')
     {
-        return sprintf('(new WithValue(%s))', $value);
+        return sprintf('([["data" => (%s), "locale" => (%s), "scope" => (%s)]])', $value, $locale, $scope);
     }
 
-    private function evaluate(array $context, string $value)
+    private function evaluate(array $context, string $value, ?string $locale = null, ?string $scope = null)
     {
-        return new WithValue($value);
+        return [[
+            'locale' => $locale,
+            'scope' => $scope,
+            'data' => $value,
+        ]];
     }
 }
