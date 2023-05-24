@@ -46,8 +46,7 @@ final class WithMultipleOption extends ExpressionFunction
     }
 
     /**
-     * @var list<string>
-     * @var array<string, array<string, string>>
+     * @return array<int, array<string, array|string|null>>
      */
     private function evaluate(array $context, array $codes, string $attribute, array $labels, ?string $locale = null, ?string $scope = null): array
     {
@@ -56,7 +55,7 @@ final class WithMultipleOption extends ExpressionFunction
             'scope' => $scope,
             'data' => $codes,
             'linked_data' => array_map(
-                fn(string $code) => [
+                fn (string $code) => [
                     'attribute' => $attribute,
                     'code' => $code,
                     'labels' => $labels[$code] ?? [],
