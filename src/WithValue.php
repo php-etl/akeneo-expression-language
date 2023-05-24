@@ -12,17 +12,17 @@ final class WithValue extends ExpressionFunction
     {
         parent::__construct(
             $name,
-            \Closure::fromCallable([$this, 'compile'])->bindTo($this),
-            \Closure::fromCallable([$this, 'evaluate'])->bindTo($this)
+            $this->compile(...)->bindTo($this),
+            $this->evaluate(...)->bindTo($this)
         );
     }
 
-    private function compile(string $value, string $locale = 'null', string $scope = 'null')
+    private function compile(string $value, string $locale = 'null', string $scope = 'null'): string
     {
         return sprintf('([["data" => (%s), "locale" => (%s), "scope" => (%s)]])', $value, $locale, $scope);
     }
 
-    private function evaluate(array $context, string $value, ?string $locale = null, ?string $scope = null)
+    private function evaluate(array $context, string $value, ?string $locale = null, ?string $scope = null): array
     {
         return [[
             'locale' => $locale,

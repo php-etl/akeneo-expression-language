@@ -12,12 +12,12 @@ final class WithMultipleOption extends ExpressionFunction
     {
         parent::__construct(
             $name,
-            \Closure::fromCallable([$this, 'compile'])->bindTo($this),
-            \Closure::fromCallable([$this, 'evaluate'])->bindTo($this)
+            $this->compile(...)->bindTo($this),
+            $this->evaluate(...)->bindTo($this)
         );
     }
 
-    private function compile(string $codes, string $attribute, string $labels, string $locale, string $scope)
+    private function compile(string $codes, string $attribute, string $labels, string $locale, string $scope): string
     {
         return <<<PHP
             (function() {
@@ -49,7 +49,7 @@ final class WithMultipleOption extends ExpressionFunction
      * @var list<string> $codes
      * @var array<string, array<string, string>> $labels
      */
-    private function evaluate(array $context, array $codes, string $attribute, array $labels, ?string $locale = null, ?string $scope = null)
+    private function evaluate(array $context, array $codes, string $attribute, array $labels, ?string $locale = null, ?string $scope = null): array
     {
         return [[
             'locale' => $locale,
