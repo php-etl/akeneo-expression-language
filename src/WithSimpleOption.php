@@ -22,13 +22,13 @@ final class WithSimpleOption extends ExpressionFunction
         return <<<PHP
             ([
                 [
-                    'data' => ($code),
-                    'locale' => $locale,
-                    'scope' => $scope,
+                    'data' => ({$code}),
+                    'locale' => {$locale},
+                    'scope' => {$scope},
                     'linked_data' => [
-                        'attribute' => ($attribute),
-                        'code' => ($code),
-                        'labels' => ($labels),
+                        'attribute' => ({$attribute}),
+                        'code' => ({$code}),
+                        'labels' => ({$labels}),
                     ],
                 ],
             ])
@@ -36,7 +36,7 @@ final class WithSimpleOption extends ExpressionFunction
     }
 
     /**
-     * @var array<string, string> $labels
+     * @var array<string, string>
      */
     private function evaluate(array $context, string $code, string $attribute, array $labels, ?string $locale = null, ?string $scope = null): array
     {
