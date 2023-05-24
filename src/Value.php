@@ -5,7 +5,7 @@ namespace Kiboko\Component\ExpressionLanguage\Akeneo;
 final class Value
 {
     public function __construct(
-        private mixed $value,
+        private readonly mixed $value,
         private ?string $scope = null,
         private ?string $locale = null,
     ) {}

@@ -56,13 +56,11 @@ final class WithMultipleOption extends ExpressionFunction
             'scope' => $scope,
             'data' => $codes,
             'linked_data' => array_map(
-                function (string $code) use ($attribute, $labels) {
-                    return [
-                        'attribute' => $attribute,
-                        'code' => $code,
-                        'labels' => $labels[$code] ?? [],
-                    ];
-                },
+                fn(string $code) => [
+                    'attribute' => $attribute,
+                    'code' => $code,
+                    'labels' => $labels[$code] ?? [],
+                ],
                 $codes
             ),
         ]];
