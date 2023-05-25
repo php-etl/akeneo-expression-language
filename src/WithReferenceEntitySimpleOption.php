@@ -23,25 +23,22 @@ final class WithReferenceEntitySimpleOption extends ExpressionFunction
             ([
                 [
                     'data' => [
-                        $code
+                        {$code}
                     ],
-                    'locale' => $locale,
-                    'channel' => $channel,
+                    'locale' => {$locale},
+                    'channel' => {$channel},
                 ],
             ])
             PHP;
     }
 
-    /**
-     * @var array<string, string> $labels
-     */
     private function evaluate(array $context, string $code, ?string $locale = null, ?string $channel = null): array
     {
         return [[
             'locale' => $locale,
             'channel' => $channel,
             'data' => [
-                $code
+                $code,
             ],
         ]];
     }
