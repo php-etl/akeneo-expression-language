@@ -23,8 +23,8 @@ final class WithMultipleOption extends ExpressionFunction
             (function() {
                 \$linkedData = array_map(
                     function (string \$code) {
-                    \$labels = {$labels};
-                    }
+                        static \$labels = {$labels};
+
                         return [
                             'attribute' => {$attribute},
                             'code' => \$code,
