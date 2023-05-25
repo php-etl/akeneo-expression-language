@@ -12,32 +12,32 @@ final class WithMultipleOption extends ExpressionFunction
     {
         parent::__construct(
             $name,
-            \Closure::fromCallable([$this, 'compile'])->bindTo($this),
-            \Closure::fromCallable([$this, 'evaluate'])->bindTo($this)
+            $this->compile(...)->bindTo($this),
+            $this->evaluate(...)->bindTo($this)
         );
     }
 
-    private function compile(string $codes, string $attribute, string $labels, string $locale, string $scope)
+    private function compile(string $codes, string $attribute, string $labels, string $locale, string $scope): string
     {
         return <<<PHP
             (function() {
                 \$linkedData = array_map(
                     function (string \$code) {
-                    \$labels = $labels;
-                    }
+                        static \$labels = {$labels};
+
                         return [
-                            'attribute' => $attribute,
+                            'attribute' => {$attribute},
                             'code' => \$code,
                             'labels' => \$labels[\$code] ?? [],
                         ];
                     },
-                    $codes,
+                    {$codes},
                 );
                 return [
                     [
-                        'data' => ($codes),
-                        'locale' => $locale,
-                        'scope' => $scope,
+                        'data' => ({$codes}),
+                        'locale' => {$locale},
+                        'scope' => {$scope},
                         'linked_data' => \$linkedData,
                     ],
                 ];
@@ -46,23 +46,20 @@ final class WithMultipleOption extends ExpressionFunction
     }
 
     /**
-     * @var list<string> $codes
-     * @var array<string, array<string, string>> $labels
+     * @return array<int, array<string, array|string|null>>
      */
-    private function evaluate(array $context, array $codes, string $attribute, array $labels, ?string $locale = null, ?string $scope = null)
+    private function evaluate(array $context, array $codes, string $attribute, array $labels, ?string $locale = null, ?string $scope = null): array
     {
         return [[
             'locale' => $locale,
             'scope' => $scope,
             'data' => $codes,
             'linked_data' => array_map(
-                function (string $code) use ($attribute, $labels) {
-                    return [
-                        'attribute' => $attribute,
-                        'code' => $code,
-                        'labels' => $labels[$code] ?? [],
-                    ];
-                },
+                fn (string $code) => [
+                    'attribute' => $attribute,
+                    'code' => $code,
+                    'labels' => $labels[$code] ?? [],
+                ],
                 $codes
             ),
         ]];

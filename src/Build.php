@@ -12,17 +12,17 @@ final class Build extends ExpressionFunction
     {
         parent::__construct(
             $name,
-            \Closure::fromCallable([$this, 'compile'])->bindTo($this),
-            \Closure::fromCallable([$this, 'evaluate'])->bindTo($this)
+            $this->compile(...)->bindTo($this),
+            $this->evaluate(...)->bindTo($this)
         );
     }
 
-    private function compile(string $input, string ...$values)
+    private function compile(string ...$values): string
     {
         return sprintf('array_values(array_merge(%s))', implode(', ', $values));
     }
 
-    private function evaluate(array $context, array ...$values)
+    private function evaluate(array $context, array ...$values): array
     {
         return array_values(array_merge(...$values));
     }
