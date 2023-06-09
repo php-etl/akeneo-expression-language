@@ -17,7 +17,7 @@ final class DateTimeZone extends ExpressionFunction
         );
     }
 
-    private function compile(string $date, string $zone, ?string $format = null): string
+    private function compile(string $date, string $zone, string $format = null): string
     {
         if (null === $format) {
             return sprintf('new \DateTimeImmutable(%s, new \DateTimeZone(%s))', $date, $zone);
@@ -26,7 +26,7 @@ final class DateTimeZone extends ExpressionFunction
         return sprintf('\DateTimeImmutable::createFromFormat(%s, %s, new \DateTimeZone(%s))', $date, $format, $zone);
     }
 
-    private function evaluate(array $context, string $date, string $zone, ?string $format = null): \DateTimeInterface
+    private function evaluate(array $context, string $date, string $zone, string $format = null): \DateTimeInterface
     {
         if (null === $format) {
             return new \DateTimeImmutable($date, new \DateTimeZone($zone));

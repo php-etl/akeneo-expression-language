@@ -48,7 +48,7 @@ final class WithMultipleOption extends ExpressionFunction
     /**
      * @return array<int, array<string, array|string|null>>
      */
-    private function evaluate(array $context, array $codes, string $attribute, array $labels, ?string $locale = null, ?string $scope = null): array
+    private function evaluate(array $context, array $codes, string $attribute, array $labels, string $locale = null, string $scope = null): array
     {
         return [[
             'locale' => $locale,

@@ -22,7 +22,7 @@ final class WithValue extends ExpressionFunction
         return sprintf('([["data" => (%s), "locale" => (%s), "scope" => (%s)]])', $value, $locale, $scope);
     }
 
-    private function evaluate(array $context, string $value, ?string $locale = null, ?string $scope = null): array
+    private function evaluate(array $context, string $value, string $locale = null, string $scope = null): array
     {
         return [[
             'locale' => $locale,
