@@ -38,7 +38,7 @@ final class WithSimpleOption extends ExpressionFunction
     /**
      * @return array<int, array<string, array<string, array|string>|string|null>>
      */
-    private function evaluate(array $context, string $code, string $attribute, array $labels, string $locale = null, string $scope = null): array
+    private function evaluate(array $context, string $code, string $attribute, array $labels, ?string $locale = null, ?string $scope = null): array
     {
         return [[
             'locale' => $locale,

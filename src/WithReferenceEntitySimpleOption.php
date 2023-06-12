@@ -32,7 +32,7 @@ final class WithReferenceEntitySimpleOption extends ExpressionFunction
             PHP;
     }
 
-    private function evaluate(array $context, string $code, string $locale = null, string $channel = null): array
+    private function evaluate(array $context, string $code, ?string $locale = null, ?string $channel = null): array
     {
         return [[
             'locale' => $locale,
