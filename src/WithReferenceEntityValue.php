@@ -22,11 +22,11 @@ final class WithReferenceEntityValue extends ExpressionFunction
         return sprintf('([["data" => (%s), "locale" => (%s), "channel" => (%s)]])', $value, $locale, $channel);
     }
 
-    private function evaluate(array $context, string $value, ?string $locale = null, ?string $scope = null): array
+    private function evaluate(array $context, string $value, ?string $locale = null, ?string $channel = null): array
     {
         return [[
             'locale' => $locale,
-            'channel' => $scope,
+            'channel' => $channel,
             'data' => $value,
         ]];
     }
