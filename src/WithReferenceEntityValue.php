@@ -6,7 +6,7 @@ namespace Kiboko\Component\ExpressionLanguage\Akeneo;
 
 use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 
-final class WithValue extends ExpressionFunction
+final class WithReferenceEntityValue extends ExpressionFunction
 {
     public function __construct($name)
     {
@@ -17,16 +17,16 @@ final class WithValue extends ExpressionFunction
         );
     }
 
-    private function compile(string $value, string $locale = 'null', string $scope = 'null'): string
+    private function compile(string $value, string $locale = 'null', string $channel = 'null'): string
     {
-        return sprintf('([["data" => (%s), "locale" => (%s), "scope" => (%s)]])', $value, $locale, $scope);
+        return sprintf('([["data" => (%s), "locale" => (%s), "channel" => (%s)]])', $value, $locale, $channel);
     }
 
-    private function evaluate(array $context, string $value, string $locale = 'null', string $scope = 'null'): array
+    private function evaluate(array $context, string $value, string|null $locale = null, string|null $channel = null): array
     {
         return [[
             'locale' => $locale,
-            'scope' => $scope,
+            'channel' => $channel,
             'data' => $value,
         ]];
     }
