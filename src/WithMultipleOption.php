@@ -17,12 +17,12 @@ final class WithMultipleOption extends ExpressionFunction
         );
     }
 
-    private function compile(string $codes, string $attribute, string $labels, string $locale, string $scope): string
+    private function compile(string $codes, string $attribute, string $labels, string $locale = 'null', string $scope = 'null'): string
     {
         return <<<PHP
-            (function() {
+            (function() use(\$input) {
                 \$linkedData = array_map(
-                    function (string \$code) {
+                    function (string \$code) use(\$input) {
                         static \$labels = {$labels};
 
                         return [
@@ -41,14 +41,14 @@ final class WithMultipleOption extends ExpressionFunction
                         'linked_data' => \$linkedData,
                     ],
                 ];
-            )()
+            })()
             PHP;
     }
 
     /**
      * @return array<int, array<string, array|string|null>>
      */
-    private function evaluate(array $context, array $codes, string $attribute, array $labels, ?string $locale = null, ?string $scope = null): array
+    private function evaluate(array $context, array $codes, string $attribute, array $labels, string|null $locale = null, string|null $scope = null): array
     {
         return [[
             'locale' => $locale,
