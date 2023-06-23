@@ -35,7 +35,6 @@ return (new PhpCsFixer\Config())
         'error_suppression' => true,
         'ereg_to_preg' => true,
         'dir_constant' => true,
-        'nullable_type_declaration_for_default_null_value' => true,
     ])
     ->setFinder($finder)
     ->setCacheFile('.php-cs-fixer.cache') // forward compatibility with 3.x line
