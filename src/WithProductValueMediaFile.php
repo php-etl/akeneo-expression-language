@@ -20,12 +20,12 @@ final class WithProductValueMediaFile extends ExpressionFunction
     private function compile(string $code, string $attribute, string $locale = 'null', string $scope = 'null'): string
     {
         return <<<PHP
-            ([
-                'identifier' => ({$code}),
-                'attribute' => ({$attribute}),
+            [
+                'identifier' => {$code},
+                'attribute' => {$attribute},
                 'locale' => {$locale},
                 'scope' => {$scope},
-            ])
+            ]
             PHP;
     }
 
