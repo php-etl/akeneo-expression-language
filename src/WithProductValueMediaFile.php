@@ -30,7 +30,7 @@ final class WithProductValueMediaFile extends ExpressionFunction
     }
 
     /**
-     * @return array<int, string>
+     * @return array<string, string>
      */
     private function evaluate(array $context, string $code, string $attribute, string $locale = 'null', string $scope = 'null'): array
     {

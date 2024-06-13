@@ -24,7 +24,7 @@ final class MetricAmount extends ExpressionFunction
             PATTERN;
     }
 
-    private function evaluate(array $context, array $value, int $decimalRound): float|null
+    private function evaluate(array $context, array $value, int $decimalRound): ?float
     {
         return !\is_array($value) || !\array_key_exists('amount', $value) ? null : round((float) $value['amount'], $decimalRound);
     }
