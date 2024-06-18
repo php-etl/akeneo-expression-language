@@ -17,6 +17,7 @@ final class AkeneoBuilderProvider implements ExpressionFunctionProviderInterface
             new WithReferenceEntitySimpleOption('withReferenceEntitySimpleOption'),
             new WithSimpleOption('withSimpleOption'),
             new WithMultipleOption('withMultipleOption'),
+            new WithProductValueMediaFile('withProductValueMediaFile'),
         ];
     }
 }

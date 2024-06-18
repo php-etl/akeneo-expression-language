@@ -24,7 +24,7 @@ final class MetricUnit extends ExpressionFunction
             PATTERN;
     }
 
-    private function evaluate(array $context, array $value): string|null
+    private function evaluate(array $context, array $value): ?string
     {
         return !\is_array($value) || !\array_key_exists('unit', $value) ? null : $value['unit'];
     }

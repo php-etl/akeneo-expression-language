@@ -23,7 +23,7 @@ final class WithMultipleOption extends ExpressionFunction
             (function() use(\$input) {
                 \$linkedData = array_map(
                     function (string \$code) use(\$input) {
-                        static \$labels = {$labels};
+                        \$labels = {$labels};
 
                         return [
                             'attribute' => {$attribute},
@@ -48,7 +48,7 @@ final class WithMultipleOption extends ExpressionFunction
     /**
      * @return array<int, array<string, array|string|null>>
      */
-    private function evaluate(array $context, array $codes, string $attribute, array $labels, string|null $locale = null, string|null $scope = null): array
+    private function evaluate(array $context, array $codes, string $attribute, array $labels, ?string $locale = null, ?string $scope = null): array
     {
         return [[
             'locale' => $locale,

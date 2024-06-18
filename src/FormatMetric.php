@@ -171,7 +171,7 @@ class FormatMetric extends ExpressionFunction
             PHP;
     }
 
-    private function evaluate(array $context, array $attribut, string $locale): string|null
+    private function evaluate(array $context, array $attribut, string $locale): ?string
     {
         return !\is_array($attribut)
         || !\array_key_exists('amount', $attribut) || !\array_key_exists('unit', $attribut) ? null : (function ($unit, $amount, $locale) {
